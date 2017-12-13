@@ -1,29 +1,22 @@
 @echo off
-set drive=D
 
-set toolsPath=%drive%:\tools
+set toolsPath=D:\tools
 set binPath=%toolsPath%\bin
 set msysHomePath=C:\tools\msys64\home\Amaranta
 
 cmd /c dummyPathCheck.bat
 cls
 REM The cls doesn't modify errorlevel for some reason
-if errorlevel 1 goto doPath
-if errorlevel 0 goto done
+if errorlevel 0 goto skipPath
 
-
-:doPath
-echo Putting on path...
-echo Would put on: %binPath%
+echo Putting %binPath% on path...
 mkdir %toolsPath%
 setx PATH "%binPath%;%path%;"
 
-
-echo Linking files...
+echo Linking files bin...
 mklink /d "%binPath%" "%~dp0bin"
 
-
-:done
+:skipPath
 rem rd "%appdata%\Sublime Text 3\Packages" /s /q
 rem mklink /d "%appdata%\Sublime Text 3\Packages" "%~dp0Packages"
 del %msysHomePath%\.zshrc /f
