@@ -19,7 +19,7 @@ fi
 bindkey -s '^[[25~' ''
 
 alias glol='git log --graph --color --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit | less -R -F -X'
-alias gd='git diff | less -F -X -R'
+alias gd='git diff --color | less -F -X -R'
 alias ls='ls --color=auto'
 
 if [ "$TMUX" = "" ]; then tmux -2; fi
