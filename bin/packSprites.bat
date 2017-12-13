@@ -1,0 +1,1 @@
+msys2_shell.cmd -full-path -where . -c "bash packSprites %1;"

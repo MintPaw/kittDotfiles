@@ -1,0 +1,9 @@
+
+C:\Users\Amaranta\Dropbox\kittDotfiles>REM This is just to check if it's on the PATH or not 
+
+C:\Users\Amaranta\Dropbox\kittDotfiles>echo Good 
+Good
+symbolic link created for C:\tools\msys64\home\Amaranta/.zshrc <<===>> C:\Users\Amaranta\Dropbox\kittDotfiles\.zshrc
+symbolic link created for C:\tools\msys64\home\Amaranta/.bashrc <<===>> C:\Users\Amaranta\Dropbox\kittDotfiles\.bashrc
+symbolic link created for C:\tools\msys64\home\Amaranta/.gitconfig <<===>> C:\Users\Amaranta\Dropbox\kittDotfiles\.gitconfig
+Press any key to continue . . . 

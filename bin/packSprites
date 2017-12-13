@@ -1,0 +1,43 @@
+#!/bin/bash
+printf "Testing dependencies:\n"
+which optipng diff texturepacker
+printf "\n\n"
+
+spriteDir=$1
+spriteName=`basename $spriteDir`
+outDir="./$spriteName"
+
+printf "Packing sprite\nFrom: %s\nTo: %s\n\n" `readlink -f $spriteDir` `readlink -f $outDir`".{png, spr}"
+read -p "Press enter to continue..."
+
+
+echo "Starting."
+firstFile=`ls "$spriteDir"/* | head -1`
+anim="0"
+for file in "$spriteDir"/*; do
+	diff "$firstFile" "$file" > /dev/null
+	if [ "$?" != "0" ]; then
+		anim="1"
+		break
+	fi
+done
+
+if [ "$anim" == "1" ]; then
+	echo "This is an animation."
+	echo "Packing $outDir"
+	texturepacker --basic-sort-by Name --disable-rotation --max-width 2048 --max-height 2048 --data "$outDir".spr --sheet "$outDir".png --format mintExporter --padding 0 --png-opt-level 1 "$spriteDir" > /dev/null
+else
+	echo "These are stills."
+	stillName=`ls "$spriteDir"/* | head -1`
+	mkdir -p $(dirname "$outDir".png)
+	cp "$stillName" "$outDir".png
+fi
+
+# echo "Compressing."
+# pngquant --ext=.png --force --quality 75-85 "$outDir".png
+
+echo "Optimizing."
+optipng -o1 -silent "$outDir".png
+
+echo "Doneskies."
+read -p "Press enter to continue..."
